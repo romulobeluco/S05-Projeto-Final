@@ -1,0 +1,151 @@
+:root{
+  --bg: #f3f6fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #126ae2;
+  --accent-2: #0a599b;
+  --glass: rgba(255,255,255,0.6);
+  --radius: 12px;
+  --shadow-soft: 0 8px 20px rgba(16,24,40,0.06);
+  --shadow-hover: 0 12px 30px rgba(16,24,40,0.09);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:linear-gradient(180deg,var(--bg) 0%, #eef4ff 100%);
+  font-family:"Inter", "Arimo", sans-serif;
+  color: #111827;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.4;
+}
+
+/* app container centered */
+main{max-width:1100px;margin:90px auto;padding:20px}
+
+/* ...existing code... */
+
+/* header */
+header{
+  position:fixed;left:0;right:0;top:0;height:64px;
+  background:linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;border-bottom:1px solid rgba(16,24,40,0.1);
+  z-index:120;
+  box-shadow: 0 4px 12px rgba(18,106,226,0.15);
+}
+#menu{cursor:pointer;display:flex;align-items:center;gap:8px}
+#menu .material-symbols-outlined{font-size:28px;color:white}
+#logo{
+  flex:1;
+  text-align:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.svg_logo{width:100px;height:auto;opacity:1;filter:brightness(0) invert(1)}
+#perfil{cursor:pointer}
+#perfil .material-symbols-outlined{font-size:30px;color:white}
+
+/* ...existing code... */
+
+/* menu overlay */
+#menu_aba{
+  display:none;position:fixed;inset:0;background:linear-gradient(180deg, rgba(8,23,48,0.02), rgba(255,255,255,0.95));
+  padding-top:64px;z-index:150;overflow:auto;
+}
+#menu_bot{
+  padding:18px 22px;cursor:pointer;color:var(--accent);font-weight:600;
+  border-bottom:1px solid rgba(16,24,40,0.04);background:transparent;
+}
+#menu_bot:hover{background:rgba(18,106,226,0.04)}
+
+/* widgets and cards */
+#mensagens{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow-soft);margin-bottom:18px;border:1px solid rgba(16,24,40,0.03)}
+#user_name{font-size:18px;margin:0 0 6px 0;font-weight:700}
+#mns_box{display:flex;gap:12px;align-items:flex-start}
+#icon{min-width:28px}
+.font{font-size:13px;color:var(--muted)}
+
+/* faculdade info */
+.info-faculdade{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:18px}
+.info-card{
+  display:flex;gap:14px;align-items:center;padding:14px;border-radius:12px;
+  background:linear-gradient(90deg,var(--accent) 0%, var(--accent-2) 100%);
+  color:white;box-shadow:var(--shadow-soft);border:1px solid rgba(255,255,255,0.06);
+}
+.info-icon{font-size:40px}
+.info-content h4{margin:0;font-size:16px;font-weight:700}
+.info-content p{margin:4px 0 0;font-size:13px;opacity:0.95}
+.info-mini{display:block;font-size:12px;margin-top:6px;opacity:0.9}
+
+/* materias grid */
+.stats-container{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+@media (max-width:1000px){.stats-container{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.stats-container{grid-template-columns:1fr}}
+
+/* materia card */
+.materia-card{
+  background:linear-gradient(180deg,var(--card) 0%, #fbfdff 100%);
+  border-radius:var(--radius);padding:12px;border:1px solid rgba(16,24,40,0.03);
+  box-shadow:var(--shadow-soft);transition:transform .22s ease, box-shadow .22s ease;
+  display:flex;flex-direction:column;gap:8px;
+}
+.materia-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover)}
+.materia-header{display:flex;justify-content:space-between;align-items:center}
+.materia-nome{font-weight:700;font-size:14px;color:#0f1724}
+.materia-sala{font-size:12px;padding:6px 8px;border-radius:999px;background:rgba(18,106,226,0.08);color:var(--accent);font-weight:600}
+.materia-body{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.materia-item{flex:1;min-width:90px;text-align:center;padding:8px;border-radius:10px;background:#fbfdff;border:1px solid rgba(14,41,84,0.03)}
+.materia-value{font-size:16px;font-weight:800;color:var(--accent)}
+.materia-label{font-size:11px;color:var(--muted);margin-top:6px}
+
+/* carousel */
+.carousel-container{margin-top:10px}
+.carousel-container button{position:absolute;top:40%;transform:translateY(-50%);background:rgba(2,6,23,0.5);color:white;padding:8px 12px;border-radius:10px;box-shadow:0 6px 18px rgba(2,6,23,0.25);border:none}
+#prevBtn{left:18px}#nextBtn{right:18px}
+
+/* Oportunidades refinadas */
+.oportunidades-header{margin:0 0 14px;border-radius:12px;padding:18px;background:linear-gradient(90deg,var(--accent) 0%, var(--accent-2) 100%);color:white;box-shadow:var(--shadow-soft)}
+.filtros-container{background:var(--card);padding:16px;border-radius:12px;margin-bottom:16px;display:flex;gap:12px;align-items:center;box-shadow:var(--shadow-soft)}
+.filtro-grupo{flex:1;min-width:180px}
+.filtro-select,.filtro-input{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(16,24,40,0.06);font-size:14px}
+.filtro-select:focus,.filtro-input:focus{outline:none;box-shadow:0 6px 18px rgba(18,106,226,0.08);border-color:var(--accent)}
+
+/* oportunidade card */
+.oportunidade-card{display:flex;flex-direction:column;gap:12px;padding:18px;border-radius:12px;background:var(--card);box-shadow:var(--shadow-soft);border:1px solid rgba(16,24,40,0.03);transition:transform .18s ease,box-shadow .18s ease}
+.oportunidade-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover)}
+.card-header{display:flex;gap:14px;align-items:center}
+.card-icon{font-size:36px;min-width:46px;text-align:center}
+.card-info-header .badge{font-size:12px;padding:6px 10px;border-radius:999px}
+.card-titulo{margin:6px 0 0;font-size:16px;font-weight:700}
+.card-empresa{margin:4px 0 0;color:var(--accent);font-weight:600}
+.card-descricao{color:var(--muted);font-size:13px}
+.card-details{display:flex;gap:16px;padding:12px;background:linear-gradient(180deg,#fbfdff,#f7fbff);border-radius:10px}
+.detail-item{display:flex;gap:10px;align-items:flex-start}
+.detail-item .material-symbols-outlined{color:var(--accent);font-size:20px}
+.card-footer{text-align:right}
+.btn-candidatar{background:linear-gradient(90deg,var(--accent) 0%, var(--accent-2) 100%);color:white;padding:10px 18px;border-radius:999px;border:none;cursor:pointer;font-weight:700}
+.btn-candidatar:hover{transform:scale(1.02);box-shadow:0 10px 30px rgba(18,106,226,0.18)}
+
+/* empty state */
+.vazio{padding:36px;text-align:center;color:var(--muted)}
+
+/* small tweaks */
+.material-symbols-outlined{vertical-align:middle}
+a,button{font-family:inherit}
+
+/* responsive adjustments */
+@media (max-width:420px){
+  header{padding:0 12px}
+  .card-details{flex-direction:column}
+  .materia-body{flex-direction:column;align-items:stretch}
+}
