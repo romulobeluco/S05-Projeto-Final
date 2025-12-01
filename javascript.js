@@ -8,23 +8,6 @@ window.closeMenu = function() {
   if (menu) menu.style.display = 'none';
 };
 
-// Temas
-window.temaInatel = function() {
-  document.documentElement.style.setProperty('--cor-back1', '#edf2f4');
-  document.documentElement.style.setProperty('--cor-click', '#126ae2');
-  document.documentElement.style.setProperty('--cor-text', 'black');
-};
-window.temaLim = function() {
-  document.documentElement.style.setProperty('--cor-back1', '#f7fff7');
-  document.documentElement.style.setProperty('--cor-click', '#6a937a');
-  document.documentElement.style.setProperty('--cor-text', 'black');
-};
-window.temaDark = function() {
-  document.documentElement.style.setProperty('--cor-back1', '#1e1e1e');
-  document.documentElement.style.setProperty('--cor-click', '#ffffff');
-  document.documentElement.style.setProperty('--cor-text', 'white');
-};
-
 // ---------- Materias (cards por matéria) ----------
 const materias = [
   { nome: 'Algoritmos I', faltas: 2, notas: [8.5, 7.0], sala: 'Sala 5 - Prédio 1' },
@@ -68,13 +51,71 @@ function renderMaterias() {
   });
 }
 
-// ---------- Oportunidades (filtro + busca) ----------
+// ---------- Oportunidades ----------
 const oportunidades = [
-  { tipo: 'Estágio', titulo: 'Estágio em Desenvolvimento Web', empresa: 'Tech Solutions', descricao: 'Procuramos aluno para trabalhar com React e Node.js', periodo: '6 meses', bolsa: 'R$ 1.500,00' },
-  { tipo: 'Emprego', titulo: 'Desenvolvedor Junior', empresa: 'Inovação Digital', descricao: 'Vaga para desenvolvedores iniciantes em Python', periodo: 'Contrato', bolsa: 'R$ 3.500,00' },
-  { tipo: 'Estágio', titulo: 'Estágio em UI/UX Design', empresa: 'Creative Studio', descricao: 'Design de interfaces e prototipagem com Figma', periodo: '4 meses', bolsa: 'R$ 1.200,00' },
-  { tipo: 'Emprego', titulo: 'Analista de Sistemas', empresa: 'Tech Corp', descricao: 'Análise e desenvolvimento de sistemas em Java', periodo: 'Contrato', bolsa: 'R$ 5.000,00' }
+  { 
+    tipo: 'Estágio', 
+    titulo: 'Estágio em Desenvolvimento Web', 
+    empresa: 'Tech Solutions', 
+    descricao: 'Procuramos aluno para trabalhar com React e Node.js', 
+    periodo: '6 meses', 
+    bolsa: 'R$ 1.500,00',
+    imagem: '🌐'
+  },
+  { 
+    tipo: 'Emprego', 
+    titulo: 'Desenvolvedor Junior', 
+    empresa: 'Inovação Digital', 
+    descricao: 'Vaga para desenvolvedores iniciantes em Python', 
+    periodo: 'Contrato', 
+    bolsa: 'R$ 3.500,00',
+    imagem: '💻'
+  },
+  { 
+    tipo: 'Estágio', 
+    titulo: 'Estágio em UI/UX Design', 
+    empresa: 'Creative Studio', 
+    descricao: 'Design de interfaces e prototipagem com Figma', 
+    periodo: '4 meses', 
+    bolsa: 'R$ 1.200,00',
+    imagem: '🎨'
+  },
+  { 
+    tipo: 'Emprego', 
+    titulo: 'Analista de Sistemas', 
+    empresa: 'Tech Corp', 
+    descricao: 'Análise e desenvolvimento de sistemas em Java', 
+    periodo: 'Contrato', 
+    bolsa: 'R$ 5.000,00',
+    imagem: '⚙️'
+  }
 ];
+
+function renderDestaques() {
+  const container = document.getElementById('destaque_container');
+  if (!container) return;
+  container.innerHTML = '';
+  
+  // Mostrar apenas os 3 primeiros
+  oportunidades.slice(0, 3).forEach((o, idx) => {
+    const corBorda = o.tipo === 'Estágio' ? '#126ae2' : '#8e24aa';
+    const card = document.createElement('div');
+    card.className = 'destaque-card';
+    card.style.animationDelay = `${idx * 0.1}s`;
+    card.innerHTML = `
+      <div class="destaque-imagem">${o.imagem}</div>
+      <div class="destaque-badge" style="background-color:${corBorda}">${o.tipo}</div>
+      <h3 class="destaque-titulo">${o.titulo}</h3>
+      <p class="destaque-empresa">${o.empresa}</p>
+      <p class="destaque-desc">${o.descricao}</p>
+      <div class="destaque-footer">
+        <span class="destaque-bolsa">${o.bolsa}</span>
+        <button class="btn-conhecer" style="background-color:${corBorda}">Conhecer</button>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
 
 window.mostrarOportunidades = function() {
   document.getElementById('conteudo_principal').style.display = 'none';
@@ -105,12 +146,11 @@ function renderizarOportunidades(lista) {
   }
   lista.forEach(o => {
     const corBorda = o.tipo === 'Estágio' ? '#126ae2' : '#8e24aa';
-    const icone = o.tipo === 'Estágio' ? '📚' : '💼';
     const card = document.createElement('div');
     card.className = 'oportunidade-card';
     card.innerHTML = `
       <div class="card-header">
-        <div class="card-icon">${icone}</div>
+        <div class="card-icon">${o.imagem}</div>
         <div class="card-info-header">
           <span class="badge" style="background-color:${corBorda}">${o.tipo}</span>
           <h3 class="card-titulo">${o.titulo}</h3>
@@ -143,4 +183,31 @@ window.voltarDashboard = function() {
 document.addEventListener('DOMContentLoaded', () => {
   closeMenu();
   renderMaterias();
+  renderDestaques();
 });
+
+function renderDestaques() {
+  const container = document.getElementById('destaque_container');
+  if (!container) return;
+  container.innerHTML = '';
+  
+  // Mostrar apenas os 3 primeiros
+  oportunidades.slice(0, 3).forEach((o, idx) => {
+    const corBorda = o.tipo === 'Estágio' ? '#126ae2' : '#8e24aa';
+    const card = document.createElement('div');
+    card.className = 'destaque-card';
+    card.style.animationDelay = `${idx * 0.1}s`;
+    card.innerHTML = `
+      <div class="destaque-imagem">${o.imagem}</div>
+      <div class="destaque-badge" style="background-color:${corBorda}">${o.tipo}</div>
+      <h3 class="destaque-titulo">${o.titulo}</h3>
+      <p class="destaque-empresa">${o.empresa}</p>
+      <p class="destaque-desc">${o.descricao}</p>
+      <div class="destaque-footer">
+        <span class="destaque-bolsa">${o.bolsa}</span>
+        <button class="btn-conhecer" style="background-color:${corBorda}" onclick="mostrarOportunidades()">Conhecer</button>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}

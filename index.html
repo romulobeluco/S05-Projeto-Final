@@ -8,9 +8,6 @@
 </head>
 <body>
   <div id="menu_aba">
-    <div id="menu_bot" onclick="closeMenu(); temaInatel();">Tema Inatel</div>
-    <div id="menu_bot" onclick="closeMenu(); temaLim();">Tema Limão</div>
-    <div id="menu_bot" onclick="closeMenu(); temaDark();">Tema Dark</div>
     <div id="menu_bot" onclick="closeMenu(); mostrarOportunidades();">Oportunidades</div>
   </div>
 
@@ -45,6 +42,14 @@
         </div>
 
         <div id="materias_container" class="stats-container"></div>
+      </div>
+
+      <div class="oportunidades-destaque">
+        <div class="destaque-header">
+          <h2>✨ Oportunidades em Destaque</h2>
+          <a href="#" onclick="mostrarOportunidades(); return false;" class="ver-mais">Ver todas</a>
+        </div>
+        <div id="destaque_container" class="destaque-grid"></div>
       </div>
 
       <aulas-component id="componente"></aulas-component>
